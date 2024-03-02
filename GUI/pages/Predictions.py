@@ -4,8 +4,9 @@ from joblib import load
 import sqlite3
 import os
 import warnings
-import sklearn
 
+
+st.set_page_config(layout="wide")
 st.title("Student Success Predictor")
 st.markdown("""
             ### About the Models

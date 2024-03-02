@@ -4,7 +4,7 @@ from joblib import load
 import os
 
 
-
+st.set_page_config(layout="wide")
 def displayimage(image_path):
     img = Image.open(image_path)
     st.image(img)
@@ -64,7 +64,7 @@ if 'prediction_made' in st.session_state and st.session_state['prediction_made']
                 st.markdown("""
                 Below is the maritial status distribution of the dataset.
                 """)
-                displayimage(os.path.join(current_script_dir, '..', '..', 'Predicting Gradutation-Dropout 4.4k', 'figures', 'maritial Status.png'))
+                displayimage(os.path.join(current_script_dir, '..', '..', 'Predicting Gradutation-Dropout 4.4k', 'figures', 'Maritial Status.png'))
             with st.expander("### See overall correlation matrix"):
                 # st.write("### Overall Correlation Matrix")
                 st.markdown("""
@@ -327,7 +327,7 @@ if 'prediction_made' in st.session_state and st.session_state['prediction_made']
                 Below is the gender distribution of the dataset.
                 """)
             
-                displayimage(os.path.join(current_script_dir, '..', '..', 'Student performance - Turkey', 'Figures', 'gender distribution.png'))
+                displayimage(os.path.join(current_script_dir, '..', '..', 'Student performance - Turkey', 'Figures', 'Gender distribution.png'))
                 
             with col3:
                 st.write("### Relationship Status Distribution")
