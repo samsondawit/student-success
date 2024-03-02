@@ -4,6 +4,7 @@ from joblib import load
 import sqlite3
 import os
 import warnings
+import sklearn
 
 st.title("Student Success Predictor")
 st.markdown("""
@@ -48,7 +49,8 @@ model = load(model_paths[selected_model_name])
 
 
 
-studentdb = 'student_database.db'
+studentdb = os.path.join(current_script_dir, '..', 'student_database.db')
+
 # conn = sqlite3.connect(studentdb)
 # table_names = ['Model1Data', 'Model2Data', 'Model3Data', 'Model4Data']
 
