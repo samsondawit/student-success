@@ -7,6 +7,15 @@ st.markdown("""
 
 This interactive tool is designed to help educators, students, and administrators predict academic outcomes based on a variety of factors. Utilizing advanced machine learning algorithms, this app can forecast the likelihood of student success, providing valuable insights that can inform educational strategies and interventions.
 
+### Digital Farabi Project Challenge
+This project is developed as part of the Digital Farabi Project Challenge.
+##### Developer: **Samson Dawit Bekele**[*](https://linkedin.com/in/samsondawit)
+
+##### Advisor: **Assoc. Prof. Phd. Imankulov Timur Sakenovich**
+
+
+
+
 ### How It Works
 - **Select a Model**: Choose from 4 pre-trained models, each tailored to interpret different data sets and capture various indicators of student performance.
 - **Input Data**: Input student data manually or select from an existing dataset to make predictions.
