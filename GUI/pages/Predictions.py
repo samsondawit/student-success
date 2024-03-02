@@ -26,11 +26,21 @@ model_paths = {
     'Model 4': os.path.join(current_script_dir, '..', '..', 'Student performance - Turkey', 'Model', 'best_model.joblib')
 }
 
-
+if 'last_selected_model' not in st.session_state:
+    st.session_state['last_selected_model'] = None
+if 'prediction_made' not in st.session_state:
+    st.session_state['prediction_made'] = False
+    
 selected_model_name = st.radio('Select a model:', list(model_paths.keys()))
 st.write("You selected:", selected_model_name)
 st.session_state['selected_model_name'] = selected_model_name
 st.session_state['model_paths'] = model_paths
+
+#added not to show viz without choosing and bug fixing
+if selected_model_name != st.session_state['last_selected_model']:
+    st.session_state['prediction_made'] = False
+    st.session_state['last_selected_model'] = selected_model_name
+
 
 data_input_method = st.selectbox("Choose your data input method:", ["Choose from dataset", "Input manually"])
 
@@ -76,6 +86,7 @@ def fetch_data(table_name):
         st.stop()
 
 selected_table = model_to_table[selected_model_name]
+    
 
 scaler_path = os.path.join(current_script_dir, '..', '..', 'Predicting Gradutation-Dropout 4.4k', 'model', 'model_scaler.joblib')
 
