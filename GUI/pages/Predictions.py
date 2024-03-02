@@ -3,9 +3,18 @@ import pandas as pd
 from joblib import load
 import sqlite3
 import os
-
+import warnings
 
 st.title("Student Success Predictor")
+st.markdown("""
+            ### About the Models
+Each predictive model in our app has been trained on historical data, capturing complex patterns and relationships that can forecast academic outcomes. The models take into account academic, social, socio-economic, and demographic features. Here are the models you can choose from:
+
+- **Model 1**: This model was trained on a dataset containing 4,424 students. It has been trained to predict *graduation and drop out rate*.
+- **Model 2**: This model has been trained to predict pass or fail rate in a math class.
+- **Model 3**: This model has been trained to predict pass or fail rate in a math class.
+- **Model 4**: This model has been trained to predict academic success or failure based on GPA.
+---""")
 st.write("Please select a prediction model and choose your preferred method to input data.")
 st.sidebar.success("After making a prediction, you may see relevant graphs and figures in the Vizualization tab.")
 
@@ -17,10 +26,13 @@ model_paths = {
     'Model 4': '../Student performance - Turkey/Model/best_model.joblib',
 }
 
+
 selected_model_name = st.radio('Select a model:', list(model_paths.keys()))
 st.write("You selected:", selected_model_name)
+st.session_state['selected_model_name'] = selected_model_name
+st.session_state['model_paths'] = model_paths
 
-data_input_method = st.radio("Choose your data input method:", ["Choose from dataset", "Input manually"])
+data_input_method = st.selectbox("Choose your data input method:", ["Choose from dataset", "Input manually"])
 
 model = load(model_paths[selected_model_name])
 
@@ -67,7 +79,6 @@ def fetch_data(table_name):
 selected_table = model_to_table[selected_model_name]
 
 scaler_path = os.path.join(current_script_dir, '..', '..', 'Predicting Gradutation-Dropout 4.4k', 'model', 'model_scaler.joblib')
-print("Scaler Path:", scaler_path)
 
 if selected_model_name == 'Model 1':
     scaler = load(scaler_path)
@@ -88,7 +99,7 @@ if data_input_method == "Choose from dataset":
             if not options:
                 st.error("Please select at least one record for prediction.")
             else:
-                
+                st.session_state['prediction_made'] = True
                 if scaler is not None:
                     selected_records_for_scaling = selected_records.apply(pd.to_numeric, errors='ignore')
                     scaled_input = scaler.transform(selected_records_for_scaling)
@@ -96,6 +107,7 @@ if data_input_method == "Choose from dataset":
                     scaled_input = selected_records
                     
                 probabilities = model.predict_proba(scaled_input)
+      
 
                 formatted_predictions = ""
                 for index, (prob_pass, prob_fail) in zip(options, probabilities):
@@ -126,33 +138,34 @@ if data_input_method == "Input manually":
             for feature in features:
                 st.session_state[feature] = ""
 
-        input_values = {}
-        for i, feature in enumerate(features):
-            with cols[i % num_columns]:
-                current_value = str(st.session_state.get(feature, ""))
-                input_values[feature] = st.text_input(feature, value=current_value, key=feature)
+    input_values = {}
+    for i, feature in enumerate(features):
+        with cols[i % num_columns]:
+            input_values[feature] = st.text_input(feature, key=feature)
+            
     with col1:
         predict_button = st.button('Predict')
+        
     if predict_button:
         if any(value == "" for value in input_values.values()):
             st.error("Please fill in all fields before predicting.")
         else:
-            input_df = pd.DataFrame([input_values])
+            st.session_state['prediction_made'] = True
+
+            input_df = pd.DataFrame([input_values], columns=features)
             input_df = input_df.apply(pd.to_numeric, errors='ignore')  
             if scaler is not None:
                 scaled_input = scaler.transform(input_df)
             else:
                 scaled_input = input_df
-            
-            probabilities = model.predict_proba(scaled_input)[0]  
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore")
+                probabilities = model.predict_proba(scaled_input)[0]  
+                st.session_state['selected_model'] = selected_model_name
+                st.session_state['selected_data'] = selected_records if data_input_method == "Choose from dataset" else input_df
             if probabilities[1] > probabilities[0]:
                 formatted_predictions = f'<div style="color:green; font-size:25px;">This student has a {probabilities[1]*100:.2f}% chance of success and a {probabilities[0]*100:.2f}% chance of failure.</div>'
             else: 
                 formatted_predictions = f'<div style="color:red; font-size:25px;">This student has a {probabilities[1]*100:.2f}% chance of success and a {probabilities[0]*100:.2f}% chance of failure.</div>'
 
             st.markdown(formatted_predictions, unsafe_allow_html=True)
-
-
-
-
-
