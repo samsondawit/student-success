@@ -100,7 +100,7 @@ if 'prediction_made' in st.session_state and st.session_state['prediction_made']
             st.markdown("""
             This bar chart compares the performance metrics across all 14 trained models trained on this dataset.
             """)
-            displayimage(os.path.join(current_script_dir, '..', '..', 'Predicting Gradutation-Dropout 4.4k', 'figures', 'model comparision for chosen dataset.png'))
+            displayimage(os.path.join(current_script_dir, '..', '..', 'Predicting Gradutation-Dropout 4.4k', 'figures', 'Model comparision for chosen dataset.PNG'))
 
         
     elif selected_model_name in ['Model 2']:  
@@ -265,13 +265,16 @@ if 'prediction_made' in st.session_state and st.session_state['prediction_made']
             st.markdown("""
             These correlation graphs show the features that have high correlation with the target.
             """)
-            displayimage(os.path.join(current_script_dir, '..', '..', 'Student Pass Fail POR', 'figure POR', 'top ten features graph.png'))
-            col1, col2, col3 = st.columns(3)
+            
+            col1, col2 = st.columns(2)
             with col1:
-                displayimage(os.path.join(current_script_dir, '..', '..', 'Student Pass Fail POR', 'figure POR', 'top school realted features with highest corr.png'))
+                displayimage(os.path.join(current_script_dir, '..', '..', 'Student Pass Fail POR', 'figure POR', 'top ten features graph.png'))
             with col2:
+                displayimage(os.path.join(current_script_dir, '..', '..', 'Student Pass Fail POR', 'figure POR', 'top school realted features with highest corr.png'))
+            col1, col2 = st.columns(2)    
+            with col1:
                 displayimage(os.path.join(current_script_dir, '..', '..', 'Student Pass Fail POR', 'figure POR', 'top academic features graph.png'))
-            with col3:
+            with col2:
                 displayimage(os.path.join(current_script_dir, '..', '..', 'Student Pass Fail POR', 'figure POR', 'top school realted features with highest corr.png'))
             
             st.write("### Comparative Bar Chart of All Models")
