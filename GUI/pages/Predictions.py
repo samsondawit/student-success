@@ -18,12 +18,12 @@ Each predictive model in our app has been trained on historical data, capturing 
 st.write("Please select a prediction model and choose your preferred method to input data.")
 st.sidebar.success("After making a prediction, you may see relevant graphs and figures in the Vizualization tab.")
 
-
+current_script_dir = os.path.dirname(os.path.abspath(__file__))
 model_paths = {
-    'Model 1': '../Predicting Gradutation-Dropout 4.4k/model/best_model.joblib',
-    'Model 2': '../Student Pass Fail POR/models/best_model_por.joblib',
-    'Model 3': '../Student Pass Fail POR/models/best_model_mat.joblib',
-    'Model 4': '../Student performance - Turkey/Model/best_model.joblib',
+    'Model 1': os.path.join(current_script_dir, '..', '..', 'Predicting Gradutation-Dropout 4.4k', 'model', 'best_model.joblib'),
+    'Model 2': os.path.join(current_script_dir, '..', '..', 'Student Pass Fail POR', 'models', 'best_model_por.joblib'), 
+    'Model 3': os.path.join(current_script_dir, '..', '..', 'Student Pass Fail POR', 'models', 'best_model_mat.joblib'),
+    'Model 4': os.path.join(current_script_dir, '..', '..', 'Student performance - Turkey', 'Model', 'best_model.joblib')
 }
 
 
@@ -36,7 +36,6 @@ data_input_method = st.selectbox("Choose your data input method:", ["Choose from
 
 model = load(model_paths[selected_model_name])
 
-current_script_dir = os.path.dirname(os.path.abspath(__file__))
 
 
 studentdb = 'student_database.db'
