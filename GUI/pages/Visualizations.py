@@ -265,7 +265,6 @@ if 'prediction_made' in st.session_state and st.session_state['prediction_made']
             st.markdown("""
             These correlation graphs show the features that have high correlation with the target.
             """)
-            
             col1, col2 = st.columns(2)
             with col1:
                 displayimage(os.path.join(current_script_dir, '..', '..', 'Student Pass Fail POR', 'figure POR', 'top ten features graph.png'))

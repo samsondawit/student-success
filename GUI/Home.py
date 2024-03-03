@@ -11,7 +11,7 @@ This interactive tool is designed to help educators, students, and administrator
 This project is developed as part of the Digital Farabi Project Challenge.
 ##### Developer: **Samson Dawit Bekele**[*](https://linkedin.com/in/samsondawit)
 
-##### Advisor: **Assoc. Prof. Phd. Imankulov Timur Sakenovich**
+##### Advisor: **Assoc. Prof., PhD, Imankulov Timur Sakenovich**
 
 
 

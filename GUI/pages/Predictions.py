@@ -120,12 +120,12 @@ if data_input_method == "Choose from dataset":
                     scaled_input = selected_records
                     
                 probabilities = model.predict_proba(scaled_input)
-      
+                
 
                 formatted_predictions = ""
-                for index, (prob_pass, prob_fail) in zip(options, probabilities):
+                for index, (prob_fail, prob_pass) in zip(options, probabilities):
                     pass_percent = prob_pass * 100
-                    fail_percent = prob_fail * 100
+                    fail_percent = prob_fail * 100 
                     if pass_percent > fail_percent:
                         formatted_predictions += f'<div style="color:green; font-size:20px;">Student {index} has a {pass_percent:.2f}% chance of success and a {fail_percent:.2f}% chance of failure.</div>'
                     else:
@@ -174,8 +174,10 @@ if data_input_method == "Input manually":
             with warnings.catch_warnings():
                 warnings.simplefilter("ignore")
                 probabilities = model.predict_proba(scaled_input)[0]  
+                
                 st.session_state['selected_model'] = selected_model_name
                 st.session_state['selected_data'] = selected_records if data_input_method == "Choose from dataset" else input_df
+                
             if probabilities[1] > probabilities[0]:
                 formatted_predictions = f'<div style="color:green; font-size:25px;">This student has a {probabilities[1]*100:.2f}% chance of success and a {probabilities[0]*100:.2f}% chance of failure.</div>'
             else: 
