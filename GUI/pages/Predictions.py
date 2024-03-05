@@ -5,6 +5,9 @@ from PIL import Image
 import sqlite3
 import os
 import warnings
+from streamlit_extras.switch_page_button import switch_page
+from streamlit_extras.dataframe_explorer import dataframe_explorer 
+from streamlit_extras.no_default_selectbox import selectbox 
 
 current_script_dir = os.path.dirname(os.path.abspath(__file__))
 logo_path = Image.open(os.path.join(current_script_dir, '..', 'logo.png'))
@@ -76,7 +79,7 @@ models = [
 - **Dataset**: Trained on the ["Predict Students' Dropout and Academic Success"](https://archive.ics.uci.edu/dataset/697/predict+students+dropout+and+academic+success) dataset, containing 4424 students and 36 features. The dataset contains socio-economic, demographic, macro, and enrollment data, as well as academic features.
 - **Preprocessing**: After feature engineering, 3 columns were dropped due to multicollinearity, and all students with "enrolled" as the target were dropped since our primary objective is to predict graduation or dropout rates, reducing data points to 3630 (3630x33).
 - **Insights**: Academic and socio-economic features were crucial for prediction. Logistic regression showed the best performance with a 92% score across accuracy, precision, recall, and F1 score metrics.
-- **Visualization & Notebook**: Relevant graphs about the model and data is found in the visualization page. Model training notebook [here](https://github.com/samsondawit/student-success/blob/main/Predicting%20Gradutation-Dropout%204.4k/Student%20Graduation.ipynb).
+- **Visualization & Notebook**: Relevant graphs about the model and data is found in the visualization page. Model training notebook [here](https://github.com/samsondawit/student-success/blob/main/Predicting%20Graduation%20Dropout%204.4k/Student%20Graduation.ipynb).
         """,
     },
     {
@@ -168,7 +171,7 @@ if selected_model_name != st.session_state['last_selected_model']:
     st.session_state['last_selected_model'] = selected_model_name
 
 
-data_input_method = st.selectbox("Choose your data input method:", ["Choose from dataset", "Input manually"])
+data_input_method = selectbox("Choose your data input method:", ["Choose from dataset", "Input manually"])
 
 model = load(model_paths[selected_model_name])
 
@@ -221,10 +224,14 @@ if selected_model_name == 'Model 1':
     scaler = load(scaler_path)
 else:
     scaler = None
-    
+if 'view_visualizations' not in st.session_state:
+    st.session_state['view_visualizations'] = False
+      
 if data_input_method == "Choose from dataset":
     df = fetch_data(selected_table)
-    st.write("Dataset Preview:", df)
+    filtered_df = dataframe_explorer(df, case=False)
+    st.dataframe(filtered_df, use_container_width=True)
+    
 
     options = st.multiselect('Select records for prediction (you can select multiple):', df.index, format_func=lambda x: f"Student {x}")
 
@@ -236,6 +243,7 @@ if data_input_method == "Choose from dataset":
             if not options:
                 st.error("Please select at least one record for prediction.")
             else:
+                st.session_state['view_visualizations'] = False
                 st.session_state['prediction_made'] = True
                 if scaler is not None:
                     selected_records_for_scaling = selected_records.apply(pd.to_numeric, errors='ignore')
@@ -254,9 +262,18 @@ if data_input_method == "Choose from dataset":
                         formatted_predictions += f'<div style="color:green; font-size:20px;">Student {index} has a {pass_percent:.2f}% chance of {passing} and a {fail_percent:.2f}% chance of {failing}</div>'
                     else:
                         formatted_predictions += f'<div style="color:red; font-size:20px;">Student {index} has a {pass_percent:.2f}% chance of {passing} and a {fail_percent:.2f}% chance of {failing}</div>'
-
-                st.markdown(formatted_predictions, unsafe_allow_html=True)
                 
+                st.markdown(formatted_predictions, unsafe_allow_html=True)
+                st.write('\n')
+
+
+    
+    if st.session_state['prediction_made'] and not st.session_state['view_visualizations']:
+        if st.button("Go to Visualizations"):
+            st.session_state['view_visualizations'] = True  
+            switch_page("Visualizations")
+
+    
 if data_input_method == "Input manually":
     num_columns = 5  
     cols = st.columns(num_columns)
@@ -288,7 +305,7 @@ if data_input_method == "Input manually":
             st.error("Please fill in all fields before predicting.")
         else:
             st.session_state['prediction_made'] = True
-
+            st.session_state['manual_prediction_made'] = True
             input_df = pd.DataFrame([input_values], columns=features)
             input_df = input_df.apply(pd.to_numeric, errors='ignore')  
             if scaler is not None:
@@ -308,3 +325,8 @@ if data_input_method == "Input manually":
                 formatted_predictions = f'<div style="color:red; font-size:25px;">This student has a {probabilities[1]*100:.2f}% chance of {passing} and a {probabilities[0]*100:.2f}% chance of {failing}</div>'
 
             st.markdown(formatted_predictions, unsafe_allow_html=True)
+            
+    if st.session_state.get('manual_prediction_made', False):
+        visualizations_page = st.button("Go to Visualizations")
+        if visualizations_page:    
+            switch_page("Visualizations")

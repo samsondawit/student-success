@@ -1,7 +1,6 @@
 import streamlit as st
 from PIL import Image
-import os
-
+from streamlit_extras.switch_page_button import switch_page
 
 logo_path = Image.open('/mount/src/student-success/GUI/logo.png')
 st.set_page_config(page_title="Home", page_icon=logo_path, layout="wide")
@@ -10,12 +9,14 @@ st.set_page_config(page_title="Home", page_icon=logo_path, layout="wide")
 with st.sidebar:
         st.header("Select the language you want to read the home page in:")
         col1, col2 = st.columns([1, 4])
-        with col1:
-            english = st.button(label='EN')
-        with col2:
-            russian = st.button(label='RU')
-        
-if russian:
+        if col1.button(label='EN'):
+            st.session_state['language'] = 'EN'
+        if col2.button(label='RU'):
+            st.session_state['language'] = 'RU'
+            
+language = st.session_state.get('language', 'EN')
+
+if language == 'RU':
     st.title('Предсказатель Академического Успеха')
     st.markdown("""
 ### Добро пожаловать в Academic Success Predictor - `основной шаг к персонализированному образованию`
@@ -28,7 +29,7 @@ if russian:
 ### Вызов Проекта Цифровой Фараби
 Этот проект разработан как часть [Вызова Проекта Цифровой Фараби](https://farabi.university/news/85336?lang=ru), Этап 2.
 ###### Разработчик: **Самсон Дауит Бекеле** [*](https://linkedin.com/in/samsondawit)
-###### Советник: **Доцент, PhD, Иманкулов Тимур Сакенович**
+###### Руководитель: **Доцент, PhD, Иманкулов Тимур Сакенович**
 
 
 
@@ -54,6 +55,9 @@ if russian:
 
 
 """, unsafe_allow_html=True)
+    if st.button("Перейти к прогнозам", key="predict_ru"):
+        switch_page("Predictions")
+
 else:
     st.title('Academic Success Predictor')
     st.markdown("""
@@ -91,5 +95,8 @@ Therefore, we propose predicting academic success because it is a `crucial first
 3. Once you've input the data, hit the "Predict" button and watch the model evaluate the likelihood of academic success. It's that simple!
 
 """, unsafe_allow_html=True)
+    
+    if st.button("Go to predictions", key="predict_en"):
+        switch_page("Predictions")
 
 st.sidebar.success("Select the Predictions Page to proceed.")
