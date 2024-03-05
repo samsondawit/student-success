@@ -3,7 +3,7 @@ from PIL import Image
 from joblib import load
 import os
 logo_path = os.path.join('logo.png')
-st.set_page_config(page_title="Vizualizations", page_icon=logo_path, layout="wide")
+st.set_page_config(page_title="Vizualizations", page_icon="../logo.png", layout="wide")
 
 def displayimage(image_path):
     img = Image.open(image_path)

@@ -1,7 +1,8 @@
 import streamlit as st
 import os
 logo_path = os.path.join('logo.png')
-st.set_page_config(page_title="Academic Success Predictor", page_icon=logo_path, layout="wide")
+st.set_page_config(page_title="Academic Success Predictor", page_icon='./logo.png', layout="wide")
+
 
 with st.sidebar:
         st.header("Select the language you want to read the home page in:")
@@ -12,6 +13,7 @@ with st.sidebar:
             russian = st.button(label='RU')
         
 if russian:
+    st.title('Предсказатель Академического Успеха')
     st.markdown("""
 ### Добро пожаловать в Academic Success Predictor - `основной шаг к персонализированному образованию`
 
@@ -50,7 +52,9 @@ if russian:
 
 """, unsafe_allow_html=True)
 else:
+    st.title('Academic Success Predictor')
     st.markdown("""
+                
 ### Welcome to the Academic Success Predictor - `a foundational step towards personalized education`
 
 This interactive tool is designed to help educators, students, and administrators predict academic outcomes based on a variety of factors. Utilizing advanced machine learning algorithms, this app can forecast the likelihood of student success, providing valuable insights that can inform educational strategies and interventions.
@@ -85,4 +89,4 @@ Therefore, we propose predicting academic success because it is a `crucial first
 
 """, unsafe_allow_html=True)
 
-st.sidebar.success("Select the Predictions to proceed.")
+st.sidebar.success("Select the Predictions Page to proceed.")

@@ -6,7 +6,7 @@ import os
 import warnings
 
 logo_path = os.path.join('logo.png')
-st.set_page_config(page_title="Predictions", page_icon=logo_path, layout="wide")
+st.set_page_config(page_title="Predictions", page_icon="../logo.png", layout="wide")
 
 st.title("Student Success Predictor")
 st.markdown("""
