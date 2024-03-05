@@ -2,8 +2,10 @@ import streamlit as st
 from PIL import Image
 from joblib import load
 import os
-logo_path = os.path.join('logo.png')
-st.set_page_config(page_title="Vizualizations", page_icon="../logo.png", layout="wide")
+
+current_script_dir = os.path.dirname(os.path.abspath(__file__))
+logo_path = Image.open(os.path.join(current_script_dir, '..', 'logo.png'))
+st.set_page_config(page_title="Vizualizations", page_icon=logo_path, layout="wide")
 
 def displayimage(image_path):
     img = Image.open(image_path)

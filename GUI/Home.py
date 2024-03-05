@@ -1,7 +1,10 @@
 import streamlit as st
+from PIL import Image
 import os
-logo_path = os.path.join('logo.png')
-st.set_page_config(page_title="Academic Success Predictor", page_icon='./logo.png', layout="wide")
+
+
+logo_path = Image.open(os.path.join('logo.png'))
+st.set_page_config(page_title="Vizualizations", page_icon=logo_path, layout="wide")
 
 
 with st.sidebar:

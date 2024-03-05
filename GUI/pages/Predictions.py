@@ -1,12 +1,14 @@
 import streamlit as st
 import pandas as pd
 from joblib import load
+from PIL import Image
 import sqlite3
 import os
 import warnings
 
-logo_path = os.path.join('logo.png')
-st.set_page_config(page_title="Predictions", page_icon="../logo.png", layout="wide")
+current_script_dir = os.path.dirname(os.path.abspath(__file__))
+logo_path = Image.open(os.path.join(current_script_dir, '..', 'logo.png'))
+st.set_page_config(page_title="Vizualizations", page_icon=logo_path, layout="wide")
 
 st.title("Student Success Predictor")
 st.markdown("""
