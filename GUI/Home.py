@@ -3,7 +3,7 @@ from PIL import Image
 import os
 
 
-logo_path = Image.open(os.path.join('logo.png'))
+logo_path = Image.open('/mount/src/student-success/GUI/logo.png')
 st.set_page_config(page_title="Home", page_icon=logo_path, layout="wide")
 
 
