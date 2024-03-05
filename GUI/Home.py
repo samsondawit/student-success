@@ -1,10 +1,11 @@
 import streamlit as st
 from PIL import Image
 from streamlit_extras.switch_page_button import switch_page
-
-logo_path = Image.open('/mount/src/student-success/GUI/logo.png')
+import os
+# logo_path = Image.open('/mount/src/student-success/GUI/logo.png')
+current_script_dir = os.path.dirname(os.path.abspath(__file__))
+logo_path = Image.open(os.path.join(current_script_dir, 'logo.png'))
 st.set_page_config(page_title="Home", page_icon=logo_path, layout="wide")
-
 
 with st.sidebar:
         st.header("Select the language you want to read the home page in:")
