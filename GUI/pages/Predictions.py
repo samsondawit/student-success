@@ -8,7 +8,7 @@ import warnings
 
 current_script_dir = os.path.dirname(os.path.abspath(__file__))
 logo_path = Image.open(os.path.join(current_script_dir, '..', 'logo.png'))
-st.set_page_config(page_title="Vizualizations", page_icon=logo_path, layout="wide")
+st.set_page_config(page_title="Predictions", page_icon=logo_path, layout="wide")
 
 st.title("Student Success Predictor")
 st.markdown("""
