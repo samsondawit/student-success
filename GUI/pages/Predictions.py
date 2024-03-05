@@ -5,24 +5,132 @@ import sqlite3
 import os
 import warnings
 
+logo_path = os.path.join('logo.png')
+st.set_page_config(page_title="Predictions", page_icon=logo_path, layout="wide")
 
-st.set_page_config(layout="wide")
 st.title("Student Success Predictor")
 st.markdown("""
-            ### About the Models
+            ## About the Models
 Each predictive model in our app has been trained on historical data, capturing complex patterns and relationships that can forecast academic outcomes. The models take into account academic, social, socio-economic, and demographic features. Here are the models you can choose from:
+""")
 
-- **Model 1**: This model was trained on a dataset containing 4,424 students. It has been trained to predict *graduation and drop out rate*.
-- **Model 2**: This model has been trained to predict pass or fail rate in a math class.
-- **Model 3**: This model has been trained to predict pass or fail rate in a math class.
-- **Model 4**: This model has been trained to predict academic success or failure based on GPA.
----""")
+st.write("**Model 1**: This is a `logistic regression model` trained to predict *graduation and drop out rate* with a `92% accuracy.` ")
+# with st.expander("Detailed Description for Model 1"):
+#     st.write("""
+#                 This model was trained on the ["Predict Students' Dropout and Academic Success"](https://archive.ics.uci.edu/dataset/697/predict+students+dropout+and+academic+success) dataset. It contains 4424 students and 36 features. The target is to predict whether a student will graduate or drop out from university. After feature engineering, 3 columns were dropped due to multicollinearity, and the data point was reduced to 3630 (3630x33). This is because all students with "enrolled" as the target were dropped since our primary objective is to predict graduation or dropout rates.
+#                 The dataset contains socio-economic, demographic, macro, and enrollment data, as well as academic features.  14 machine learning models were trained on this dataset and hyperparameter tuning was carried out for optimal performance. Logistic regression performed best with a 92% score across all accuracy, precision, recall, and f1 score metrics. 
+#                 For the logistic regression model, academic and socio-economic features were important in making a prediction, as seen by its feature importance graph in the visualization page. The model training notebook can be found [here](https://github.com/samsondawit/student-success/blob/main/Predicting%20Gradutation-Dropout%204.4k/Student%20Graduation.ipynb).
+#                 """)
+st.write("**Model 2**: This is a `support vector classifier model` trained to predict pass or fail rate in a Math class with a `91% accuracy`.")
+# with st.expander("Detailed description for Model 2"):
+#     st.write("""
+#                 This model was trained on the ["Student Performance"](https://archive.ics.uci.edu/dataset/320/student+performance) dataset from a secondary education institute. The data attributes include student grades, demographic, social and school-related features and it was collected by using school reports and questionnaires. 
+#                 Two datasets are provided regarding the performance in two distinct subjects: Mathematics (mat) and Portuguese language (por). This model was trained on the Math dataset to predict pass or fail in the math class. It has 32 features and 395 data points. 14 machine learning models were trained on this dataset and hyperparameter tuning was carried out for optimal performance.
+#                 Support Vector Classifier (SVC) with a poly kernel performed best with 91% accuracy across all classification metrics. 
+#                 For the SVC model, academic features such as grades of 1st and 2nd semesters, study time, and absences were important in making predictions. 
+#                 Moreover, the model considered social features such as if the student goes out a lot and how much they travel. Other features like health and the mother's job were also important. The visualizations can be found in the visualizations tab after making a prediction with this model.
+#                 The model training notebook can be found [here](https://github.com/samsondawit/student-success/blob/main/Student%20Pass%20Fail%20POR/Student%20Performance%20MAT.ipynb).
+#                 """)
+st.write("**Model 3**: This is a `support vector classifier model` trained to predict pass or fail rate in a Portugese language class with a `95% accuracy`.")
+# with st.expander("Detailed description for Model 3"):
+#     st.write("""
+#                 This model was trained on the ["Student Performance"](https://archive.ics.uci.edu/dataset/320/student+performance) dataset from a secondary education institute. The data attributes include student grades, demographic, social and school-related features and it was collected by using school reports and questionnaires. 
+#                 Two datasets are provided regarding the performance in two distinct subjects: Mathematics (mat) and Portuguese language (por). This model was trained on the Portugese language dataset to predict pass or fail in the class. It has 32 features and 649 data points. 14 machine learning models were trained on this dataset and hyperparameter tuning was carried out for optimal performance.
+#                 Support Vector Classifier (SVC) with a poly kernel performed best with 95% accuracy across all classification metrics. 
+#                 Academic features such as grades of 1st and 2nd semester, and absences were important in making predictions for the model. Interestingly, the model considers the health of the student, the quality of their family relation, whether or not they want to pursue higher education, and how much free time they have are also features important for the model.
+#                 The visualizations can be found in the Visualizations tab after making a prediction with this model.
+#                 The model training notebook can be found [here](https://github.com/samsondawit/student-success/blob/main/Student%20Pass%20Fail%20POR/Student%20Performance%20POR.ipynb).
+#                 """)
+st.write("**Model 4**: This is a `stacking classifier model` with adaboost, random forest, and logistic regression as base learners and logistic regression as final estimator, trained to predict academic performance based on GPA. It has an `83% accuracy`.")
+# with st.expander("Detailed description for Model 4"):
+#     st.write("""
+#                The dataset was trained on the [Higher Education Students Performance Evaluation] (https://archive.ics.uci.edu/dataset/856/higher+education+students+performance+evaluation) dataset. 
+#                The data was collected from the Faculty of Engineering and Faculty of Educational Sciences students. The purpose is to predict students' end-of-term performances. 
+#                The survey had personal questions, family questions, and education habits. It contains demographic, socio-economic and academic features. 
+#                The dataset has 145 datapoints and 31 features. 
+               
+#                This model was trained to predict if a student will pass or fail by the end of the year from all courses based on 32 features and 649 data points. 
+#                14 machine learning models were trained on this dataset and hyperparameter tuning was carried out for optimal performance.
+#                The best performing model was a Stacking Classifier with adaboost, random forest, and logistic regression as base learners, and logistic regression again as the final estimator. The model had an 83% accuracy across all classification metrics. 
+#                The noticably lower accuracy is because of the small dataset. This further signifies the challenges that comes with predicting academic performance and as a consequence, personalized learning, due to lack of adequate datasets.
+#                 It is not possible to directly get the feature importance of a stacking model, but academic, social, and socio-economic features were most important during their predictions. The visualizations can be found in the Visualizations tab after making a prediction with this model.
+#                 The model training notebook can be found [here](https://github.com/samsondawit/student-success/blob/main/Student%20performance%20-%20Turkey/Student%20performance%20-%20Turkey%20dataset.ipynb).
+#                 """)
+    
+
+st.markdown("""
+### Model Summaries
+Explore detailed descriptions of each model by expanding their sections. Each model has unique characteristics and performance metrics.
+""")
+
+models = [
+    {
+        "name": "Model 1: Logistic Regression",
+        "accuracy": "92%",
+        "description": """
+- **Type**: Logistic Regression Model
+- **Objective**: Predict graduation and dropout rates
+- **Accuracy**: 92%
+- **Dataset**: Trained on the ["Predict Students' Dropout and Academic Success"](https://archive.ics.uci.edu/dataset/697/predict+students+dropout+and+academic+success) dataset, containing 4424 students and 36 features. The dataset contains socio-economic, demographic, macro, and enrollment data, as well as academic features.
+- **Preprocessing**: After feature engineering, 3 columns were dropped due to multicollinearity, and all students with "enrolled" as the target were dropped since our primary objective is to predict graduation or dropout rates, reducing data points to 3630 (3630x33).
+- **Insights**: Academic and socio-economic features were crucial for prediction. Logistic regression showed the best performance with a 92% score across accuracy, precision, recall, and F1 score metrics.
+- **Visualization & Notebook**: Relevant graphs about the model and data is found in the visualization page. Model training notebook [here](https://github.com/samsondawit/student-success/blob/main/Predicting%20Gradutation-Dropout%204.4k/Student%20Graduation.ipynb).
+        """,
+    },
+    {
+        "name": "Model 2: Support Vector Classifier (Math)",
+        "accuracy": "91%",
+        "description": """
+- **Type**: Support Vector Classifier Model
+- **Objective**: Predict pass or fail rate in a Math class
+- **Accuracy**: 91%
+- **Dataset**: Based on the ["Student Performance"](https://archive.ics.uci.edu/dataset/320/student+performance) dataset from a secondary education institute, focusing on the Mathematics performance.
+- **Features & Data Points**: Includes 32 features and 395 data points. The data attributes include student grades, demographic, social and school-related features.
+- **Key Factors**: Academic performance (grades, study time), social behaviors (going out, travel), and other factors like health and parent's job were influential.
+- **Visualization & Notebook**: Relevant graphs and figures for the model and dataset are found in the vizualizations page post-prediction. Training notebook [here](https://github.com/samsondawit/student-success/blob/main/Student%20Pass%20Fail%20POR/Student%20Performance%20MAT.ipynb).
+        """,
+    },
+    {
+        "name": "Model 3: Support Vector Classifier (Portuguese)",
+        "accuracy": "95%",
+        "description": """
+- **Type**: Support Vector Classifier Model
+- **Objective**: Predict pass or fail rate in a Portuguese language class
+- **Accuracy**: 95%
+- **Dataset**: Utilizes the ["Student Performance"](https://archive.ics.uci.edu/dataset/320/student+performance) dataset from a secondary education institution, with a focus on Portuguese language performance. The data attributes include student grades, demographic, social and school-related features. It has 32 features and 649 data points.
+- **Insights**: The model considers academic records, health status, family relations, free time and aspirations for higher education as key features.
+- **Visualization & Notebook**: Relevant visualizations available after predictions. Training notebook [here](https://github.com/samsondawit/student-success/blob/main/Student%20Pass%20Fail%20POR/Student%20Performance%20POR.ipynb).
+        """,
+    },
+    {
+        "name": "Model 4: Stacking Model",
+        "accuracy": "83%",
+        "description": """
+- **Type**: Stacking Model with Adaboost, Random Forest, and Logistic Regression as base learners and Logistic Regression as the final estimator.
+- **Objective**: Predict academic performance based on GPA.
+- **Accuracy**: 83% (The lower accuracy due to size of data, emphasizing the need for bigger and more holistic datasets.)
+- **Dataset**: The model is trained on the [Higher Education Students Performance Evaluation](https://archive.ics.uci.edu/dataset/856/higher+education+students+performance+evaluation) dataset, focusing on students from the Faculty of Engineering and Faculty of Educational Sciences.
+- **Dataset Characteristics**: Contains 145 data points and 31 features, highlighting the challenge of predicting academic performance due to small dataset sizes.
+- **Insights**:  It is not possible to directly get the feature importance of a stacking model, but academic, social, and socio-economic features were most important during the model's predictions.
+- **Visualization & Notebook**: Relevant graphs and figures for the model and dataset are found in the vizualizations page post-prediction. Training notebook [here](https://github.com/samsondawit/student-success/blob/main/Student%20performance%20-%20Turkey/Student%20performance%20-%20Turkey%20dataset.ipynb).
+        """,
+    },
+]
+
+for model in models:
+    with st.expander(f"{model['name']} (Accuracy: {model['accuracy']}) - Detailed Description"):
+        st.markdown(model["description"])
+
+
+
+st.markdown("---")
+st.write("## Start making predictions: Choose a model and data input method")
 st.write("Please select a prediction model and choose your preferred method to input data.")
 st.sidebar.success("After making a prediction, you may see relevant graphs and figures in the Vizualization tab.")
 
 current_script_dir = os.path.dirname(os.path.abspath(__file__))
 model_paths = {
-    'Model 1': os.path.join(current_script_dir, '..', '..', 'Predicting Gradutation-Dropout 4.4k', 'model', 'best_model.joblib'),
+    'Model 1': os.path.join(current_script_dir, '..', '..', 'Predicting Graduation Dropout 4.4k', 'model', 'best_model.joblib'),
     'Model 2': os.path.join(current_script_dir, '..', '..', 'Student Pass Fail POR', 'models', 'best_model_por.joblib'), 
     'Model 3': os.path.join(current_script_dir, '..', '..', 'Student Pass Fail POR', 'models', 'best_model_mat.joblib'),
     'Model 4': os.path.join(current_script_dir, '..', '..', 'Student performance - Turkey', 'Model', 'best_model.joblib')
@@ -32,9 +140,23 @@ if 'last_selected_model' not in st.session_state:
     st.session_state['last_selected_model'] = None
 if 'prediction_made' not in st.session_state:
     st.session_state['prediction_made'] = False
-    
-selected_model_name = st.radio('Select a model:', list(model_paths.keys()))
-st.write("You selected:", selected_model_name)
+col1, col2 = st.columns(2)
+with col1:
+    selected_model_name = st.radio('Select a model:', list(model_paths.keys()))
+
+with col2:
+    if selected_model_name == 'Model 1':
+        st.info("This model predicts if a student will graduate or drop out from university with 92% accuracy." )
+        passing, failing = 'graduating', 'dropping out.'
+    elif selected_model_name == 'Model 2':
+        st.info("This model predicts if a student will pass their Math class with 91% accuracy." )
+        passing, failing = 'passing', 'failing Math.'
+    elif selected_model_name == 'Model 3':
+        st.info("This model predicts if a student will pass their Portuguese class with 95% accuracy." )
+        passing, failing = 'passing', 'failing Portuguese.'
+    else:
+        st.info("This model predicts if a student will pass or fail the current academic year with 83% accuracy." )
+        passing, failing = 'passing', 'failing this academic year.'
 st.session_state['selected_model_name'] = selected_model_name
 st.session_state['model_paths'] = model_paths
 
@@ -91,7 +213,7 @@ def fetch_data(table_name):
 selected_table = model_to_table[selected_model_name]
     
 
-scaler_path = os.path.join(current_script_dir, '..', '..', 'Predicting Gradutation-Dropout 4.4k', 'model', 'model_scaler.joblib')
+scaler_path = os.path.join(current_script_dir, '..', '..', 'Predicting Graduation Dropout 4.4k', 'model', 'model_scaler.joblib')
 
 if selected_model_name == 'Model 1':
     scaler = load(scaler_path)
@@ -127,9 +249,9 @@ if data_input_method == "Choose from dataset":
                     pass_percent = prob_pass * 100
                     fail_percent = prob_fail * 100 
                     if pass_percent > fail_percent:
-                        formatted_predictions += f'<div style="color:green; font-size:20px;">Student {index} has a {pass_percent:.2f}% chance of success and a {fail_percent:.2f}% chance of failure.</div>'
+                        formatted_predictions += f'<div style="color:green; font-size:20px;">Student {index} has a {pass_percent:.2f}% chance of {passing} and a {fail_percent:.2f}% chance of {failing}</div>'
                     else:
-                        formatted_predictions += f'<div style="color:red; font-size:20px;">Student {index} has a {pass_percent:.2f}% chance of success and a {fail_percent:.2f}% chance of failure.</div>'
+                        formatted_predictions += f'<div style="color:red; font-size:20px;">Student {index} has a {pass_percent:.2f}% chance of {passing} and a {fail_percent:.2f}% chance of {failing}</div>'
 
                 st.markdown(formatted_predictions, unsafe_allow_html=True)
                 
@@ -179,8 +301,8 @@ if data_input_method == "Input manually":
                 st.session_state['selected_data'] = selected_records if data_input_method == "Choose from dataset" else input_df
                 
             if probabilities[1] > probabilities[0]:
-                formatted_predictions = f'<div style="color:green; font-size:25px;">This student has a {probabilities[1]*100:.2f}% chance of success and a {probabilities[0]*100:.2f}% chance of failure.</div>'
+                formatted_predictions = f'<div style="color:green; font-size:25px;">This student has a {probabilities[1]*100:.2f}% chance of {passing} and a {probabilities[0]*100:.2f}% chance of {failing}</div>'
             else: 
-                formatted_predictions = f'<div style="color:red; font-size:25px;">This student has a {probabilities[1]*100:.2f}% chance of success and a {probabilities[0]*100:.2f}% chance of failure.</div>'
+                formatted_predictions = f'<div style="color:red; font-size:25px;">This student has a {probabilities[1]*100:.2f}% chance of {passing} and a {probabilities[0]*100:.2f}% chance of {failing}</div>'
 
             st.markdown(formatted_predictions, unsafe_allow_html=True)
