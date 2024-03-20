@@ -29,11 +29,34 @@ if language == 'RU':
 
 ### Вызов Проекта Цифровой Фараби
 Этот проект разработан как часть [Вызова Проекта Цифровой Фараби](https://farabi.university/news/85336?lang=ru), Этап 2.
-###### Разработчик: **Самсон Дауит Бекеле** [*](https://linkedin.com/in/samsondawit)
-###### Руководитель: **Доцент, PhD, Иманкулов Тимур Сакенович**
+###### Разработчик: **Самсон Дауит Бекеле** | [LinkedIn](https://linkedin.com/in/samsondawit)
+###### Руководитель: **Доцент, Иманкулов Тимур (PhD)**
 
+Этот проект занял первое место на соревновании. Пресс-релиз университета можно найти [здесь](https://farabi.university/news/86373?lang=ru).
+""", unsafe_allow_html=True)
+    concept_presentation_path = os.path.join(current_script_dir, 'Concept presentation.pptx')
+    UI_presentation_path = os.path.join(current_script_dir, 'UI presentation.pptx')
+    st.markdown(""" #### Презентации: 
+            """)
 
-
+    col1, col2 = st.columns([2,7])
+    with col1:
+        with open(concept_presentation_path, "rb") as file:
+            st.download_button(
+                label="Презентация концепции",
+                data=file,
+                file_name="Concept presentation.pptx",
+                mime="application/vnd.openxmlformats-officedocument.presentationml.presentation"
+            )
+    with col2:
+        with open(UI_presentation_path, "rb") as file:
+            st.download_button(
+                label="Презентация пользовательского интерфейса",
+                data=file,
+                file_name="UI Presentation.pptx",
+                mime="application/vnd.openxmlformats-officedocument.presentationml.presentation"
+                )
+    st.markdown("""
 ### Как это работает
 - **Выберите модель**: Выберите из 4 предварительно обученных моделей, каждая из которых адаптирована для интерпретации различных наборов данных и улавливания различных индикаторов успеваемости студентов.
 - **Ввод данных**: Введите данные студента из существующего набора данных, соответствующего модели, или введите вручную для прогнозирования.
@@ -56,8 +79,9 @@ if language == 'RU':
 
 
 """, unsafe_allow_html=True)
+    st.sidebar.success("Выберите страницу прогнозов, чтобы продолжить.")
     if st.button("Перейти к прогнозам", key="predict_ru"):
-        switch_page("Predictions")
+            switch_page("Predictions")
 
 else:
     st.title('Academic Success Predictor')
@@ -71,33 +95,59 @@ This app is a proof of concept of what could be possible if a dataset is meticul
 
 
 ### Digital Farabi Project Challenge
-This project is developed as part of the [Digital Farabi Project Challenge](https://farabi.university/news/85336?lang=en), Stage 2.
-###### Developer: **Samson Dawit Bekele** [*](https://linkedin.com/in/samsondawit)
-###### Advisor: **Assoc. Prof., PhD, Imankulov Timur Sakenovich**
+This project is developed as part of the [Digital Farabi Project Challenge](https://farabi.university/news/85336?lang=en), Round 2. This challenge was sponsored by ASUS Education and Bugin Holding. 
+###### Developer: **Samson Dawit Bekele** | [LinkedIn](https://linkedin.com/in/samsondawit)
+###### Advisor: **Assoc. Prof., Imankulov Timur (PhD)**
 
-
-### How It Works
-- **Select a Model**: Choose from 4 pre-trained models, each tailored to interpret different data sets and capture various indicators of student performance.
-- **Input Data**: Input student data from an existing dataset corresponding to the model or input manually to make predictions.
-- **Receive Predictions**: The app will process the data through the selected predictive model and provide you with the probability of academic success or failure.
-- **Explore Visualizations**: After making predictions, visit the Visualization tab in the sidebar to see relevant graphs and figures that explain the model's decision making and give information about the dataset the model was trained on. 
-
-### Why Predict Academic Success?
-The given task was to recommend courses based on learning preference and academic performance. This is a wide and active research area that posits significant challenges. Such a model is not possible currently due to the lack of an appropriate dataset.
-Therefore, we propose predicting academic success because it is a `crucial first step towards personalized education`. By understanding potential outcomes, educators can:
-- **Target Interventions**: Allocate resources and support to students who are predicted to require additional assistance.
-- **Personalize Learning**: Tailor educational experiences to individual student needs, maximizing their chances for success.
-- **Monitor Progress**: Keep track of the likelihood of success over time and adjust strategies as students develop and circumstances change.
-- **Foster Academic Growth**: Use insights to create an environment where all students have the opportunity to succeed.
-
-### Get Started
-1. Select a predictive model from the 4 pre-trained models. More detail about the models is given in the predictions page.
-2. Choose your method for inputting data into the model. You can either manually enter student information or select from a preloaded dataset.
-3. Once you've input the data, hit the "Predict" button and watch the model evaluate the likelihood of academic success. It's that simple!
-
+This project has won the first place in the competition. The university press release can be found [here](https://farabi.university/news/86373?lang=en). 
 """, unsafe_allow_html=True)
-    
-    if st.button("Go to predictions", key="predict_en"):
-        switch_page("Predictions")
+    concept_presentation_path = os.path.join(current_script_dir, 'Concept presentation.pptx')
+    UI_presentation_path = os.path.join(current_script_dir, 'UI presentation.pptx')
+    st.markdown(""" #### Presentations: 
+            """)
 
-st.sidebar.success("Select the Predictions Page to proceed.")
+    col1, col2 = st.columns([1,4])
+    with col1:
+        with open(concept_presentation_path, "rb") as file:
+            st.download_button(
+                label="Concept Presentation",
+                data=file,
+                file_name="Concept presentation.pptx",
+                mime="application/vnd.openxmlformats-officedocument.presentationml.presentation"
+            )
+    with col2:
+        with open(UI_presentation_path, "rb") as file:
+            st.download_button(
+                label="UI Presentation",
+                data=file,
+                file_name="UI Presentation.pptx",
+                mime="application/vnd.openxmlformats-officedocument.presentationml.presentation"
+                )
+    st.markdown("""
+
+    ### How It Works
+    - **Select a Model**: Choose from 4 pre-trained models, each tailored to interpret different data sets and capture various indicators of student performance.
+    - **Input Data**: Input student data from an existing dataset corresponding to the model or input manually to make predictions.
+    - **Receive Predictions**: The app will process the data through the selected predictive model and provide you with the probability of academic success or failure.
+    - **Explore Visualizations**: After making predictions, visit the Visualization tab in the sidebar to see relevant graphs and figures that explain the model's decision making and give information about the dataset the model was trained on. 
+
+    ### Why Predict Academic Success?
+    The given task was to recommend courses based on learning preference and academic performance. This is a wide and active research area that posits significant challenges. Such a model is not possible currently due to the lack of an appropriate dataset.
+    Therefore, we propose predicting academic success because it is a `crucial first step towards personalized education`. By understanding potential outcomes, educators can:
+    - **Target Interventions**: Allocate resources and support to students who are predicted to require additional assistance.
+    - **Personalize Learning**: Tailor educational experiences to individual student needs, maximizing their chances for success.
+    - **Monitor Progress**: Keep track of the likelihood of success over time and adjust strategies as students develop and circumstances change.
+    - **Foster Academic Growth**: Use insights to create an environment where all students have the opportunity to succeed.
+
+    ### Get Started
+    1. Select a predictive model from the 4 pre-trained models. More detail about the models is given in the predictions page.
+    2. Choose your method for inputting data into the model. You can either manually enter student information or select from a preloaded dataset.
+    3. Once you've input the data, hit the "Predict" button and watch the model evaluate the likelihood of academic success. It's that simple!
+
+    """, unsafe_allow_html=True)
+        
+    if st.button("Go to predictions", key="predict_en"):
+            switch_page("Predictions")
+        
+                
+    st.sidebar.success("Select the Predictions Page to proceed.")
