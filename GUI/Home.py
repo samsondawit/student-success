@@ -27,35 +27,42 @@ if language == 'RU':
 Это приложение является доказательством концепции того, что может быть возможным, если набор данных собран тщательно, что позволяет персонализировать и, в последствии, улучшить текущую модель образования, которую мы имеем.
 
 
-### Вызов Проекта Цифровой Фараби
-Этот проект разработан как часть [Вызова Проекта Цифровой Фараби](https://farabi.university/news/85336?lang=ru), Этап 2.
+### Фараби Алеми
+
+Этот проект был разработан в рамках международного форума «Фараби Алеми».
+
 ###### Разработчик: **Самсон Дауит Бекеле** | [LinkedIn](https://linkedin.com/in/samsondawit)
 ###### Руководитель: **Доцент, Иманкулов Тимур (PhD)**
 
-Этот проект занял первое место на соревновании. Пресс-релиз университета можно найти [здесь](https://farabi.university/news/86373?lang=ru).
 """, unsafe_allow_html=True)
-    concept_presentation_path = os.path.join(current_script_dir, 'Concept presentation.pptx')
-    UI_presentation_path = os.path.join(current_script_dir, 'UI presentation.pptx')
-    st.markdown(""" #### Презентации: 
-            """)
+#     ### Вызов Проекта Цифровой Фараби
+# Этот проект разработан как часть [Вызова Проекта Цифровой Фараби](https://farabi.university/news/85336?lang=ru), Этап 2.
+# ###### Разработчик: **Самсон Дауит Бекеле** | [LinkedIn](https://linkedin.com/in/samsondawit)
+# ###### Руководитель: **Доцент, Иманкулов Тимур (PhD)**
 
-    col1, col2 = st.columns([2,7])
-    with col1:
-        with open(concept_presentation_path, "rb") as file:
-            st.download_button(
-                label="Презентация концепции",
-                data=file,
-                file_name="Concept presentation.pptx",
-                mime="application/vnd.openxmlformats-officedocument.presentationml.presentation"
-            )
-    with col2:
-        with open(UI_presentation_path, "rb") as file:
-            st.download_button(
-                label="Презентация пользовательского интерфейса",
-                data=file,
-                file_name="UI Presentation.pptx",
-                mime="application/vnd.openxmlformats-officedocument.presentationml.presentation"
-                )
+# Этот проект занял первое место на соревновании. Пресс-релиз университета можно найти [здесь](https://farabi.university/news/86373?lang=ru).
+#     concept_presentation_path = os.path.join(current_script_dir, 'Concept presentation.pptx')
+#     UI_presentation_path = os.path.join(current_script_dir, 'UI presentation.pptx')
+#     st.markdown(""" #### Презентации: 
+#             """)
+
+#     col1, col2 = st.columns([2,7])
+#     with col1:
+#         with open(concept_presentation_path, "rb") as file:
+#             st.download_button(
+#                 label="Презентация концепции",
+#                 data=file,
+#                 file_name="Concept presentation.pptx",
+#                 mime="application/vnd.openxmlformats-officedocument.presentationml.presentation"
+#             )
+#     with col2:
+#         with open(UI_presentation_path, "rb") as file:
+#             st.download_button(
+#                 label="Презентация пользовательского интерфейса",
+#                 data=file,
+#                 file_name="UI Presentation.pptx",
+#                 mime="application/vnd.openxmlformats-officedocument.presentationml.presentation"
+#                 )
     st.markdown("""
 ### Как это работает
 - **Выберите модель**: Выберите из 4 предварительно обученных моделей, каждая из которых адаптирована для интерпретации различных наборов данных и улавливания различных индикаторов успеваемости студентов.
@@ -94,35 +101,42 @@ This interactive tool is designed to help educators, students, and administrator
 This app is a proof of concept of what could be possible if a dataset is meticulously collected, enabling personalization and subsequently the improvement of the current education model we have. 
 
 
-### Digital Farabi Project Challenge
-This project is developed as part of the [Digital Farabi Project Challenge](https://farabi.university/news/85336?lang=en), Round 2. This challenge was sponsored by ASUS Education and Bugin Holding. 
+### Farabi Alemi
+This project is developed as part of the Farabi Alemi international forum.
 ###### Developer: **Samson Dawit Bekele** | [LinkedIn](https://linkedin.com/in/samsondawit)
 ###### Advisor: **Assoc. Prof., Imankulov Timur (PhD)**
 
-This project has won the first place in the competition. The university press release can be found [here](https://farabi.university/news/86373?lang=en). 
 """, unsafe_allow_html=True)
-    concept_presentation_path = os.path.join(current_script_dir, 'Concept presentation.pptx')
-    UI_presentation_path = os.path.join(current_script_dir, 'UI presentation.pptx')
-    st.markdown(""" #### Presentations: 
-            """)
+    ### Digital Farabi Project Challenge
+# This project is developed as part of the [Digital Farabi Project Challenge](https://farabi.university/news/85336?lang=en), Round 2. This challenge was sponsored by ASUS Education and Bugin Holding. 
+###### Developer: **Samson Dawit Bekele** | [LinkedIn](https://linkedin.com/in/samsondawit)
+###### Advisor: **Assoc. Prof., Imankulov Timur (PhD)**
+# This project has won the first place in the competition. The university press release can be found [here](https://farabi.university/news/86373?lang=en). 
 
-    col1, col2 = st.columns([1,4])
-    with col1:
-        with open(concept_presentation_path, "rb") as file:
-            st.download_button(
-                label="Concept Presentation",
-                data=file,
-                file_name="Concept presentation.pptx",
-                mime="application/vnd.openxmlformats-officedocument.presentationml.presentation"
-            )
-    with col2:
-        with open(UI_presentation_path, "rb") as file:
-            st.download_button(
-                label="UI Presentation",
-                data=file,
-                file_name="UI Presentation.pptx",
-                mime="application/vnd.openxmlformats-officedocument.presentationml.presentation"
-                )
+
+    # concept_presentation_path = os.path.join(current_script_dir, 'Concept presentation.pptx')
+    # UI_presentation_path = os.path.join(current_script_dir, 'UI presentation.pptx')
+    # st.markdown(""" #### Presentations: 
+    #         """)
+    # This project has won the first place in the competition. The university press release can be found [here](https://farabi.university/news/86373?lang=en). 
+
+    # col1, col2 = st.columns([1,4])
+    # with col1:
+    #     with open(concept_presentation_path, "rb") as file:
+    #         st.download_button(
+    #             label="Concept Presentation",
+    #             data=file,
+    #             file_name="Concept presentation.pptx",
+    #             mime="application/vnd.openxmlformats-officedocument.presentationml.presentation"
+    #         )
+    # with col2:
+    #     with open(UI_presentation_path, "rb") as file:
+    #         st.download_button(
+    #             label="UI Presentation",
+    #             data=file,
+    #             file_name="UI Presentation.pptx",
+    #             mime="application/vnd.openxmlformats-officedocument.presentationml.presentation"
+    #             )
     st.markdown("""
 
     ### How It Works
