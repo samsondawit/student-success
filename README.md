@@ -34,7 +34,8 @@ Utilizing four comprehensive datasets from the UCI Machine Learning repository, 
 
 Our solution includes an interactive user interface built with Streamlit, enabling users to make predictions on student outcomes. Below is an architectural overview:
 
-![Image of the Architecture](https://github.com/samsondawit/student-success/assets/117774323/aa62a56c-2e2f-4c0e-81cf-6e8228ce20a0)
+![Image of the architecture](https://github.com/samsondawit/student-success/assets/117774323/9e09fd60-9c55-430b-ad3f-2ce048fc04aa)
+
 
 ### SQL Database Integration
 
